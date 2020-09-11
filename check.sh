@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ELAPSED=0
-TIMEOUT=5
+TIMEOUT=120
 CONTAINER=$1
 until [ $ELAPSED -eq "${TIMEOUT}" ] || docker ps -a --filter "status=running" --filter "name=${CONTAINER}" | grep "${CONTAINER}"; do
   echo "Waiting for container to start: ${CONTAINER}"
