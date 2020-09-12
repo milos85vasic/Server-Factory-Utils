@@ -1,12 +1,14 @@
 #!/bin/sh
 
-ELAPSED=1
+ELAPSED=0
 TIMEOUT=120
 CONTAINER=$1
+
 until [ $ELAPSED -eq "${TIMEOUT}" ] || docker ps -a --filter "status=running" --filter "name=${CONTAINER}" | grep "${CONTAINER}"; do
-  echo "Waiting for container to start: ${CONTAINER}, retry: $ELAPSED"
-  sleep $((ELAPSED = ELAPSED + 1))
+
+  echo "Waiting for container to start: ${CONTAINER}, retry: $((ELAPSED = ELAPSED + 1))" && sleep 1
 done
+
 if test "$ELAPSED" -eq ${TIMEOUT}
 then
 
