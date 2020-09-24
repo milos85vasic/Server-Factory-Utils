@@ -1,5 +1,6 @@
 #!/bin/sh
 
+factoryType=$1
 if test -e build.gradle && test -e Factory; then
 
   if which gradle; then
@@ -17,8 +18,10 @@ fi
 
 if test Factory/Release/Factory.jar; then
 
-  sudo cp -f Factory/Release/Factory.jar /usr/local/bin &&
-    cp -f mail_factory.sh /usr/local/bin
+  factoryPath="/usr/local/bin/Factory/$factoryType"
+  sudo mkdir -p "$factoryPath" && \
+  cp -f Factory/Release/Factory.jar "$factoryPath" && \
+    cp -f factory.sh "$factoryPath"
 else
 
   echo "No Factory.jar found"
