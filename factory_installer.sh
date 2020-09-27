@@ -21,7 +21,7 @@ if test Application/Release/Application.jar; then
   factoryPath="/usr/local/bin"
   echo "Please enter your sudo password to install the software" &&
     if sudo cp -f Application/Release/Application.jar "$factoryPath/factory_$factoryType.jar" &&
-      cp -f factory.sh "$factoryPath/factory_$factoryType.sh"; then
+      cp -f Core/Utils/factory.sh "$factoryPath/factory_$factoryType.sh"; then
 
       echo "Software has been installed with success"
     else
