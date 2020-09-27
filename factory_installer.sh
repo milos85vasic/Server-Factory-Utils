@@ -23,7 +23,31 @@ if test Application/Release/Application.jar; then
     if sudo cp -f Application/Release/Application.jar "$factoryPath/factory_$factoryType.jar" &&
       cp -f Core/Utils/factory.sh "$factoryPath/factory_$factoryType.sh"; then
 
-      echo "Software has been installed with success"
+      definitions="$factoryPath/Definitions"
+      detailsJson="$definitions/Details.json"
+      if test -e "$detailsJson"; then
+        # shellcheck disable=SC2002
+        if cat "$detailsJson" | grep "definitions_version"; then
+
+          echo "Existing software definitions found, cleaning up"
+          if sudo rm -rf "$definitions"; then
+
+            echo "Clean up completed"
+          else
+
+            echo "Clean up failed"
+            exit 1
+          fi
+        fi
+      fi
+
+      if sudo cp -R Definitions "$definitions"; then
+
+        echo "Software has been installed with success"
+      else
+
+        echo "Software installation failed, could not copy software definitions"
+      fi
     else
 
       echo "Software installation failed"
