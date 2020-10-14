@@ -27,7 +27,7 @@ if test Application/Release/Application.jar; then
       detailsJson="$definitions/Details.json"
       if test -e "$detailsJson"; then
         # shellcheck disable=SC2002
-        if cat "$detailsJson" | grep "definitions_version"; then
+        if cat "$detailsJson" | grep "repository_version"; then
 
           echo "Existing software definitions found, cleaning up"
           if sudo rm -rf "$definitions"; then
@@ -41,12 +41,39 @@ if test Application/Release/Application.jar; then
         fi
       fi
 
-      if sudo cp -R Definitions "$definitions"; then
+      coreRoot="$factoryPath/Core"
+      coreUtils="$coreRoot/Utils"
+      coreUtilsReadme="$coreUtils/README.md"
+      if test -e "$coreUtilsReadme"; then
+        # shellcheck disable=SC2002
+        if cat "$coreUtilsReadme" | grep "Server Factory Utils"; then
 
-        echo "Software has been installed with success"
+          echo "Existing core utils found, cleaning up"
+          if sudo rm -rf "$coreUtils"; then
+
+            echo "Clean up completed"
+          else
+
+            echo "Clean up failed"
+            exit 1
+          fi
+        fi
+      fi
+
+      mkdir -p "$coreRoot"
+      if sudo cp -R Core/Utils "$coreRoot"; then
+
+        echo "Core utils have been installed with success"
+        if sudo cp -R Definitions "$definitions"; then
+
+          echo "Software has been installed with success"
+        else
+
+          echo "Software installation failed, could not copy software definitions"
+        fi
       else
 
-        echo "Software installation failed, could not copy software definitions"
+        echo "Core utils installation failed, could not copy files"
       fi
     else
 
