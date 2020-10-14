@@ -27,7 +27,7 @@ if test Application/Release/Application.jar; then
       detailsJson="$definitions/Details.json"
       if test -e "$detailsJson"; then
         # shellcheck disable=SC2002
-        if cat "$detailsJson" | grep "repository_version"; then
+        if cat "$detailsJson" | grep "definitions_version"; then
 
           echo "Existing software definitions found, cleaning up"
           if sudo rm -rf "$definitions"; then
