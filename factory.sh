@@ -9,7 +9,7 @@ if which java; then
   jarFile="$factoryPath/factory_$factoryType.jar"
   if test -e "$jarFile"; then
 
-    java -jar "$jarFile" "$configuration"
+    cd ~ && java -jar "$jarFile" "$configuration"
   else
 
     echo "No $factoryType factory jar found at: $factoryPath"
