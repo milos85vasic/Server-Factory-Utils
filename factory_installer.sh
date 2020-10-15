@@ -18,7 +18,7 @@ fi
 
 if test Application/Release/Application.jar; then
 
-  factoryPath="/usr/local/bin"
+  factoryPath="$2"
   echo "Please enter your sudo password to install the software" &&
     if sudo cp -f Application/Release/Application.jar "$factoryPath/factory_$factoryType.jar" &&
       cp -f Core/Utils/factory.sh "$factoryPath/factory_$factoryType.sh"; then
@@ -27,7 +27,7 @@ if test Application/Release/Application.jar; then
       detailsJson="$definitions/Details.json"
       if test -e "$detailsJson"; then
         # shellcheck disable=SC2002
-        if cat "$detailsJson" | grep "repository_version"; then
+        if cat "$detailsJson" | grep "repository_version" > /dev/null; then
 
           echo "Existing software definitions found, cleaning up"
           if sudo rm -rf "$definitions"; then
@@ -46,7 +46,7 @@ if test Application/Release/Application.jar; then
       coreUtilsReadme="$coreUtils/README.md"
       if test -e "$coreUtilsReadme"; then
         # shellcheck disable=SC2002
-        if cat "$coreUtilsReadme" | grep "Server Factory Utils"; then
+        if cat "$coreUtilsReadme" | grep "Server Factory Utils" > /dev/null; then
 
           echo "Existing core utils found, cleaning up"
           if sudo rm -rf "$coreUtils"; then
