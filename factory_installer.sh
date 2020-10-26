@@ -62,7 +62,7 @@ if test Application/Release/Application.jar; then
 
       mkdir -p "$coreRoot"
       if sudo cp -R Core/Utils "$coreRoot" && sudo chmod -R 750 "$coreRoot" && \
-      sudo chmod -R 500 "$coreRoot"; then
+      sudo chmod -R 750 "$coreRoot"; then
 
         echo "Core utils have been installed with success"
         if sudo cp -R Definitions "$definitions"; then
