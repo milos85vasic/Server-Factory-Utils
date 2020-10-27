@@ -65,7 +65,8 @@ if test Application/Release/Application.jar; then
       sudo chmod -R 750 "$coreRoot"; then
 
         echo "Core utils have been installed with success"
-        if sudo cp -R Definitions "$definitions"; then
+        if sudo cp -R Definitions "$definitions" && \
+          sudo chmod -R 550 "$definitions"; then
 
           echo "Software has been installed with success"
         else
