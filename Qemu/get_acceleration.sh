@@ -5,6 +5,12 @@ if uname | grep -i "darwin" > /dev/null; then
   echo "hvf"
 else
 
-  echo "tcg"
+  if uname | grep -i "linux" > /dev/null; then
+
+    echo "kvm"
+  else
+
+    echo "tcg"
+  fi
 fi
 
