@@ -10,3 +10,4 @@ sh create_disk.sh "$machine" 20 &&
   -display "$display",show-cursor=on -usb -device usb-tablet -vga virtio \
   -drive file="$machine.qcow2,format=qcow2,if=virtio" \
   -cdrom "$iso"
+
