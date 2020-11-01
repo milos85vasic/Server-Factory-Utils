@@ -1,7 +1,7 @@
 #!/bin/sh
 
 script_path="/usr/local/bin"
-script_path_full="$script_path/get_server_factory_bridge_name.sh"
+script_path_full="$script_path/server_factory_bridge_name.sh"
 
 if test -e "$script_path_full"; then
 
