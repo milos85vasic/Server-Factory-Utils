@@ -1,5 +1,6 @@
 #!/bin/sh
 
+bindBridgeTo="en0"
 bridgeName=$(sh create_and_get_bridge.sh)
 
 if ! (ifconfig "$bridgeName"); then
@@ -8,8 +9,8 @@ if ! (ifconfig "$bridgeName"); then
   echo "$bridgeName: Creating network bridge"
   if sudo ifconfig "$bridgeName" create && \
     echo "Step: Bridge created" && \
-    sudo ifconfig "$bridgeName" addm en0 && \
-    echo "Step: Bridge bound to: en0" && \
+    sudo ifconfig "$bridgeName" addm "$bindBridgeTo" && \
+    echo "Step: Bridge bound to: $bindBridgeTo" && \
     sudo ifconfig bridge0 up && \
     echo "Step: Bridge is up"; then
 
