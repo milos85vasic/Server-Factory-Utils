@@ -3,15 +3,22 @@
 if ! test -e /usr/local/bin/ip; then
 
   echo "'ip' command not found on the system"
-  echo "'ip' command will be installed"
-  if curl --remote-name -L https://github.com/brona/iproute2mac/raw/master/src/ip.py && \
-    chmod +x ip.py && \
-    mv ip.py /usr/local/bin/ip; then
+  if uname | grep -i "darwin" > /dev/null; then
 
-      echo "'ip' command installed"
+    echo "'ip' command will be installed"
+    if curl --remote-name -L https://github.com/brona/iproute2mac/raw/master/src/ip.py && \
+      chmod +x ip.py && \
+      mv ip.py /usr/local/bin/ip; then
+
+        echo "'ip' command installed"
+    else
+
+      echo "'ip' command installation failed"
+      exit 1
+    fi
   else
 
-    echo "'ip' command installation failed"
+    echo "ERROR: 'ip' command is required to continue, please install it for your system"
     exit 1
   fi
 fi
