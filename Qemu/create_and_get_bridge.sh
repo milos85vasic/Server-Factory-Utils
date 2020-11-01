@@ -6,6 +6,7 @@ script_path_full="$script_path/get_server_factory_bridge_name.sh"
 if test -e "$script_path_full"; then
 
   sh "$script_path_full"
+  exit 0
 else
 
   for ITER in 1 .. 100
