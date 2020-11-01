@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bridgeName=$(sh get_bridge_name.sh)
+bridgeName=$(sh create_and_get_bridge.sh)
 
 if ! (ifconfig "$bridgeName"); then
 
@@ -16,7 +16,7 @@ if ! (ifconfig "$bridgeName"); then
       echo "$bridgeName: Network bridge created"
   else
 
-    echo "$bridgeName: ERROR: Network bridge was not created"
+    echo "ERROR: $bridgeName: Network bridge was not created"
     exit 1
   fi
 else
