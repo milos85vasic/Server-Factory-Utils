@@ -5,25 +5,41 @@ script_path_full="$script_path/server_factory_bridge_name.sh"
 
 if test -e "$script_path_full"; then
 
-  sh "$script_path_full"
-  exit 0
+  bridge=$(sh "$script_path_full")
+  if sh create_bridge.sh "$bridge" > /dev/null; then
+
+    echo "$bridge"
+    exit 0
+  else
+
+    echo "ERROR: Could not create bridge [1]"
+    exit 1
+  fi
 else
 
   for ITER in 1 .. 100
   do
+
     bridge="bridge$ITER"
     if ! (ifconfig "$bridge" > /dev/null); then
 
-      echo """
-      #!/bin/sh
+      if sh create_bridge.sh "$bridge" > /dev/null; then
 
-      echo $bridge
-      """ > "$script_path_full" && chmod 750 "$script_path_full"
-      sh "$script_path_full"
-      exit 0
+        echo """
+        #!/bin/sh
+
+        echo $bridge
+        """ > "$script_path_full" && chmod 750 "$script_path_full"
+        echo "$bridge"
+        exit 0
+      else
+
+        echo "ERROR: Could not create bridge [2]"
+        exit 1
+      fi
     fi
   done
 fi
 
-echo "ERROR: Could not obtain bridge name"
+echo "ERROR: Could not obtain bridge candidate"
 exit 1

@@ -8,10 +8,10 @@ if test -e "$script_path_full"; then
   bridge=$(sh $script_path_full)
   if sudo ifconfig "$bridge" destroy && sudo rm -f "$script_path_full"; then
 
-    echo "$bridge network bridge deleted"
+    echo "'$bridge': Network bridge deleted"
   else
 
-    echo "ERROR: $bridge network bridge was not deleted"
+    echo "ERROR: '$bridge' Network bridge was not deleted"
     exit 1
   fi
 else
