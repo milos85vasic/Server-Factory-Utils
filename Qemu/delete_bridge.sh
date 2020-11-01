@@ -9,7 +9,7 @@ if test -e "$script_path_full"; then
   if sudo sysctl -w net.inet.ip.forwarding=0 > /dev/null && \
     sudo sysctl -w net.link.ether.inet.proxyall=0 > /dev/null && \
     # TODO: macOS:
-    # sudo sysctl -w net.inet.ip.fw.enable=0 > /dev/null && \
+    # sudo sysctl -w net.inet.ip.fw.enable=1 > /dev/null && \
     sudo ifconfig "$bridge" destroy && \
     sudo rm -f "$script_path_full"; then
 
