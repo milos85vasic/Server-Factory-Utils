@@ -1,5 +1,21 @@
 #!/bin/sh
 
+if ! test -e /usr/local/bin/ip; then
+
+  echo "'ip' command not found on the system"
+  echo "'ip' command will be installed"
+  if curl --remote-name -L https://github.com/brona/iproute2mac/raw/master/src/ip.py && \
+    chmod +x ip.py && \
+    mv ip.py /usr/local/bin/ip; then
+
+      echo "'ip' command installed"
+  else
+
+    echo "'ip' command installation failed"
+    exit 1
+  fi
+fi
+
 bindBridgeTo="en0"
 bridgeName=$(sh create_and_get_bridge.sh)
 
