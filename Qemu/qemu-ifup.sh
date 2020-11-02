@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: Create variant of qemu-ifdown!
 echo "Executing /etc/qemu-ifup"
 echo "Creating bridge"
 sysctl -w net.link.ether.inet.proxyall=1
