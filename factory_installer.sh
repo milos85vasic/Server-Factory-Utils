@@ -27,7 +27,7 @@ if test Application/Release/Application.jar; then
       detailsJson="$definitions/Details.json"
       if test -e "$detailsJson"; then
         # shellcheck disable=SC2002
-        if cat "$detailsJson" | grep "repository_version" > /dev/null; then
+        if cat "$detailsJson" | grep "repository_version" >/dev/null 2>&1; then
 
           echo "Existing software definitions found, cleaning up"
           if sudo rm -rf "$definitions"; then
@@ -46,7 +46,7 @@ if test Application/Release/Application.jar; then
       coreUtilsReadme="$coreUtils/README.md"
       if test -e "$coreUtilsReadme"; then
         # shellcheck disable=SC2002
-        if cat "$coreUtilsReadme" | grep "Server Factory Utils" > /dev/null; then
+        if cat "$coreUtilsReadme" | grep "Server Factory Utils" >/dev/null 2>&1; then
 
           echo "Existing core utils found, cleaning up"
           if sudo rm -rf "$coreUtils"; then
