@@ -23,12 +23,12 @@ if test -e "$iso_location_settings"; then
         fi
       else
 
-        exit 1
         echo "ERROR: $iso_location_settings not available, please create sync. script and try again"
+        exit 1
       fi
   fi
 else
 
-  exit 1
   echo "ERROR: $iso_location_settings not available, please create file and add absolute path to iso(s) to it"
+  exit 1
 fi
