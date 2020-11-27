@@ -82,7 +82,7 @@ else
     if ssh -p "$port" root@"$machine" mkdir -p .ssh; then
 
     echo "$machine: .ssh directory created"
-    if cat "$certificate".pub | ssh -p "$port" root@"$machine" 'cat >> '; then
+    if cat "$certificate".pub | ssh -p "$port" root@"$machine" "cat >> $authorized_keys"; then
 
       echo "$machine: Certificate imported"
       if ssh -p "$port" root@"$machine" 'echo Hello'; then
