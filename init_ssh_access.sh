@@ -64,3 +64,20 @@ else
     exit 1
   fi
 fi
+
+if ssh root@"$certificate" mkdir -p .ssh; then
+
+  echo "$machine: .ssh directory created"
+  if cat "$certificate".pub | ssh root@"$machine" 'cat >> .ssh/authorized_keys'; then
+
+    echo "$machine: Certificate imported"
+  else
+
+    echo "ERROR: $machine certificate not imported"
+    exit 1
+  fi
+else
+
+  echo "ERROR: $machine .ssh directory not created"
+  exit 1
+fi
