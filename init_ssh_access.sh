@@ -1,6 +1,14 @@
 #!/bin/sh
 
 machine=$1
+if [ -z "$2" ]
+then
+
+  port="22"
+else
+
+  port=$2
+fi
 
 certificate=~/.ssh/server_factory
 echo "$certificate: Checking certificate"
@@ -65,13 +73,13 @@ else
   fi
 fi
 
-if ssh root@"$certificate" mkdir -p .ssh; then
+if ssh -p "$port" root@"$certificate" mkdir -p .ssh; then
 
   echo "$machine: .ssh directory created"
-  if cat "$certificate".pub | ssh root@"$machine" 'cat >> .ssh/authorized_keys'; then
+  if cat "$certificate".pub | ssh -p "$port" root@"$machine" 'cat >> .ssh/authorized_keys'; then
 
     echo "$machine: Certificate imported"
-    if ssh root@"$machine" 'echo Hello'; then
+    if ssh -p "$port" root@"$machine" 'echo Hello'; then
 
       echo "$machine: Ready"
     else
