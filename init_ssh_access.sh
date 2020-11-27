@@ -73,27 +73,34 @@ else
   fi
 fi
 
-if ssh -p "$port" root@"$certificate" mkdir -p .ssh; then
+authorized_keys=".ssh/authorized_keys"
+if ssh -p "$port" root@"$machine" cat "$authorized_keys" | grep "$(cat $certificate.pub)" >/dev/null 2>&1; then
 
-  echo "$machine: .ssh directory created"
-  if cat "$certificate".pub | ssh -p "$port" root@"$machine" 'cat >> .ssh/authorized_keys'; then
+  echo "$certificate: Available on $machine"
+else
 
-    echo "$machine: Certificate imported"
-    if ssh -p "$port" root@"$machine" 'echo Hello'; then
+    if ssh -p "$port" root@"$machine" mkdir -p .ssh; then
 
-      echo "$machine: Ready"
+    echo "$machine: .ssh directory created"
+    if cat "$certificate".pub | ssh -p "$port" root@"$machine" 'cat >> '; then
+
+      echo "$machine: Certificate imported"
+      if ssh -p "$port" root@"$machine" 'echo Hello'; then
+
+        echo "$machine: Ready"
+      else
+
+        echo "ERROR: $machine is not ready"
+        exit 1
+      fi
     else
 
-      echo "ERROR: $machine is not ready"
+      echo "ERROR: $machine certificate not imported"
       exit 1
     fi
   else
 
-    echo "ERROR: $machine certificate not imported"
+    echo "ERROR: $machine .ssh directory not created"
     exit 1
   fi
-else
-
-  echo "ERROR: $machine .ssh directory not created"
-  exit 1
 fi
