@@ -44,6 +44,15 @@ else
           exit 1
         fi
       fi
+
+      if ssh-add "$certificate"; then
+
+        echo "$certificate: Loaded"
+      else
+
+        echo "ERROR: $certificate not loaded"
+        exit 1
+      fi
     else
 
       echo "ERROR: SSH agent failure"
