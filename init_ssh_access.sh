@@ -23,7 +23,7 @@ else
     echo "$certificate: Generated"
     if eval "$(ssh-agent -s)"; then
 
-      if sh is_macos.sh; then
+      if uname | grep -i "darwin" >/dev/null 2>&1; then
 
         config=~/.ssh/config
         if ! test -e "$config" && touch "$config"; then
