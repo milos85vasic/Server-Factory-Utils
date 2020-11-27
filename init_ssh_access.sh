@@ -71,6 +71,14 @@ if ssh root@"$certificate" mkdir -p .ssh; then
   if cat "$certificate".pub | ssh root@"$machine" 'cat >> .ssh/authorized_keys'; then
 
     echo "$machine: Certificate imported"
+    if ssh root@"$machine" 'echo Hello'; then
+
+      echo "$machine: Ready"
+    else
+
+      echo "ERROR: $machine is not ready"
+      exit 1
+    fi
   else
 
     echo "ERROR: $machine certificate not imported"
