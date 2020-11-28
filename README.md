@@ -45,5 +45,27 @@ To create a tunnel between your machine and remote machine service you can use `
 
 ### How to use `tunnel.sh` script
 
+Script accepts two parameters:
+
+- Port to use on localhost side (will be tunneled to the same port on remote side)
+- Remote host
+
+Example of use:
+
+```
+sh tunnel.sh 35432 centos8.dev.local
+```
+
+or
+
+```
+sh tunnel.sh 35432 root@192.168.0.101
+```
+
+Now we are able to access this service locally on port 35432:
+
+```
+telnet 127.0.0.1 35432
+```
 
 
