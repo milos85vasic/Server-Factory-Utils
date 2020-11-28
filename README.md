@@ -27,7 +27,7 @@ or
 sh init_ssh_access.sh 192.168.0.101
 ```
 
-Once script has been executed with success you cann access remote server as a root without providing the password:
+Once script has been executed with success you can access the remote server as a root without providing the password:
 
 ```
 ssh centos8.dev.local
