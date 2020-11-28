@@ -8,7 +8,7 @@ To enable SSH login without a password use `init_ssh_access.sh` script.
 Script will generate SSH key and incorporate it into the remote machine.
 
 
-### How to use
+### How to use `init_ssh_access.sh` script
 
 Script is accepting two parameters: 
 
@@ -38,3 +38,12 @@ or
 ```
 ssh root@192.168.0.101
 ```
+
+## Tunneling
+
+To create a tunnel between your machine and remote machine service you can use `tunnel.sh` script.
+
+### How to use `tunnel.sh` script
+
+
+
