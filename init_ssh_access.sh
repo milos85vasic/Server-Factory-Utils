@@ -81,23 +81,23 @@ else
 
     if ssh -p "$port" root@"$machine" mkdir -p .ssh; then
 
-    echo "$machine: .ssh directory created"
-    if cat "$certificate".pub | ssh -p "$port" root@"$machine" "cat >> $authorized_keys"; then
+      echo "$machine: .ssh directory created"
+      if cat "$certificate".pub | ssh -p "$port" root@"$machine" "cat >> $authorized_keys"; then
 
-      echo "$machine: Certificate imported"
-      if ssh -p "$port" root@"$machine" 'echo Hello'; then
+        echo "$machine: Certificate imported"
+        if ssh -p "$port" root@"$machine" 'echo Hello'; then
 
-        echo "$machine: Ready"
+          echo "$machine: Ready"
+        else
+
+          echo "ERROR: $machine is not ready"
+          exit 1
+        fi
       else
 
-        echo "ERROR: $machine is not ready"
+        echo "ERROR: $machine certificate not imported"
         exit 1
       fi
-    else
-
-      echo "ERROR: $machine certificate not imported"
-      exit 1
-    fi
   else
 
     echo "ERROR: $machine .ssh directory not created"
