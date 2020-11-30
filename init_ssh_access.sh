@@ -73,6 +73,7 @@ else
   fi
 fi
 
+ping -c 3 "$machine"
 authorized_keys=".ssh/authorized_keys"
 if ssh -p "$port" root@"$machine" cat "$authorized_keys" | grep "$(cat $certificate.pub)" >/dev/null 2>&1; then
 
