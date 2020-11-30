@@ -73,7 +73,7 @@ else
   fi
 fi
 
-if ! ping -c 3 "$machine"; then
+if ! ping -c 3 "$machine" >/dev/null 2>&1; then
 
   echo "ERROR: $machine is unreachable"
   exit 1
