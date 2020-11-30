@@ -73,7 +73,12 @@ else
   fi
 fi
 
-ping -c 3 "$machine"
+if ! ping -c 3 "$machine"; then
+
+  echo "ERROR: $machine is unreachable"
+  exit 1
+fi
+
 authorized_keys=".ssh/authorized_keys"
 if ssh -p "$port" root@"$machine" cat "$authorized_keys" | grep "$(cat $certificate.pub)" >/dev/null 2>&1; then
 
