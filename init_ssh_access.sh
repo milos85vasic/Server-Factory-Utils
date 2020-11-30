@@ -73,7 +73,11 @@ else
   fi
 fi
 
-if ! ping -c 3 "$machine" >/dev/null 2>&1; then
+echo "$machine: Checking reachability"
+if ping -c 3 "$machine" >/dev/null 2>&1; then
+
+  echo "$machine: Reachable"
+else
 
   echo "ERROR: $machine is unreachable"
   exit 1
