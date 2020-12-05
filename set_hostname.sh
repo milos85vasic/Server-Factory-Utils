@@ -6,7 +6,11 @@ if hostnamectl set-hostname "$to_set"; then
   echo "Hostname set to: $to_set"
   if systemctl status avahi-daemon.service | grep running; then
 
-    if ! systemctl restart avahi-daemon.service; then
+    echo "Restarting avahi daemon service"
+    if  systemctl restart avahi-daemon.service; then
+
+      echo "Restarted avahi daemon service"
+    else
 
       echo "ERROR: could not restart avahi daemon service"
       exit 1
