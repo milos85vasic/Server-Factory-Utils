@@ -1,6 +1,9 @@
 # Server Factory Utils
 
-Various utils for [Server Factory](https://github.com/milos85vasic/Server-Factory).
+Various utils for [Server Factory](https://github.com/milos85vasic/Server-Factory) framework.
+
+See [Current version](./version.txt) and
+[version code](./version_code.txt).
 
 ## SSH login without password
 
