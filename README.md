@@ -2,7 +2,7 @@
 
 Various utils for [Server Factory](https://github.com/milos85vasic/Server-Factory) framework.
 
-See [Current version](./version.txt) and
+See the [current version](./version.txt) and
 [version code](./version_code.txt).
 
 ## SSH login without password
@@ -42,11 +42,11 @@ or
 ssh root@192.168.0.101
 ```
 
-## Obtaining host's IP address
+## Obtaining the host's IP address
 
-To obtain IP address based on the host name you can use a `getip.sh` script.
+To obtain an IP address based on the hostname you can use a `getip.sh` script.
 
-### How to use the `getip.sh` script
+### How to use `getip.sh` script
 
 The script accepts one parameter:
 - Name of the remote host.
@@ -99,5 +99,5 @@ telnet 127.0.0.1 35432
 
 ## What's new?
 
-To see what is new in a current version please see the [changelog](./CHANGELOG.md).
+To see what is new in the current version please see the [changelog](./CHANGELOG.md).
 
