@@ -1,4 +1,4 @@
-# Server Factory Utils
+# [Server Factory](https://github.com/milos85vasic/Server-Factory) Utils
 
 Various utils for [Server Factory](https://github.com/milos85vasic/Server-Factory) framework.
 
@@ -94,4 +94,7 @@ Now we can access this service locally on port 35432:
 telnet 127.0.0.1 35432
 ```
 
+## What's new?
+
+To see what is new in a current version please see the [changelog](./CHANGELOG.md).
 
