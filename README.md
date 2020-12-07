@@ -49,7 +49,7 @@ To obtain an IP address based on the hostname you can use a `getip.sh` script.
 ### How to use `getip.sh` script
 
 The script accepts one parameter:
-- Name of the remote host.
+- Name of the host.
 
 Example of use:
 
