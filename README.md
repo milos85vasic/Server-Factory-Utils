@@ -1,6 +1,9 @@
 # Server Factory Utils
 
-Various utils for [Server Factory](https://github.com/milos85vasic/Server-Factory).
+Various utils for [Server Factory](https://github.com/milos85vasic/Server-Factory) framework.
+
+See [Current version](./version.txt) and
+[version code](./version_code.txt).
 
 ## SSH login without password
 
@@ -42,6 +45,29 @@ ssh root@192.168.0.101
 ## Tunneling
 
 To create a tunnel between your machine and remote machine service you can use a `tunnel.sh` script.
+
+### How to use the `getip.sh` script
+
+The script accepts one parameter:
+- Name of the remote host.
+
+Example of use:
+
+```
+sh getip.sh google.com
+```
+
+or
+
+```
+sh getip.sh localhost
+```
+
+or mDNS powered host:
+
+```
+sh getip.sh some_machine.local
+```
 
 ### How to use the `tunnel.sh` script
 
