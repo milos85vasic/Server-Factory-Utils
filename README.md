@@ -42,9 +42,9 @@ or
 ssh root@192.168.0.101
 ```
 
-## Tunneling
+## Obtaining host's IP address
 
-To create a tunnel between your machine and remote machine service you can use a `tunnel.sh` script.
+To obtain IP address based on the host name you can use a `getip.sh` script.
 
 ### How to use the `getip.sh` script
 
@@ -68,6 +68,9 @@ or mDNS powered host:
 ```
 sh getip.sh some_machine.local
 ```
+## Tunneling
+
+To create a tunnel between your machine and remote machine service you can use a `tunnel.sh` script.
 
 ### How to use the `tunnel.sh` script
 
