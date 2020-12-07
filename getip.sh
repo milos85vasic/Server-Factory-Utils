@@ -2,7 +2,8 @@
 
 address=$1
 error="Could not obtain ip address for: $address"
-if nslookup "${address}" | grep "can't find" >/dev/null 2>&1; then
+if ! which nslookup >/dev/null 2>&1 ||
+  nslookup "${address}" | grep "can't find" >/dev/null 2>&1; then
 
   ping_result=$(ping -c 3 "$address")
   if echo "$ping_result" | grep "100.0% packet loss" >/dev/null 2>&1; then
