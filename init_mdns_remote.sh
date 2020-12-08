@@ -1,14 +1,15 @@
 #!/bin/sh
 
+name=$2
 machine=$1
-if [ -z "$2" ]
-then
+if [ -z "$3" ]; then
 
   port="22"
 else
 
   port=$2
 fi
+
 echo "$machine: Checking reachability"
 if ping -c 3 "$machine" >/dev/null 2>&1; then
 
@@ -80,3 +81,34 @@ else
   echo "ERROR: $packages  not installed"
   exit 1
 fi
+
+if ssh -p "$port" root@"$machine" "hostnamectl set-hostname $name"; then
+
+  echo "$name: Set to $machine"
+else
+
+  echo "ERROR: $name not set to $machine"
+  exit 1
+fi
+
+restart_service="systemctl restart $service"
+if ssh -p "$port" root@"$machine" "$restart_service"; then
+
+  echo "$service: Restarted"
+else
+
+  echo "ERROR: $service  not restarted"
+  exit 1
+fi
+
+echo "$name: Checking reachability"
+if ping -c 3 "$name" >/dev/null 2>&1; then
+
+  echo "$name: Reachable"
+else
+
+  echo "ERROR: $name is unreachable"
+  exit 1
+fi
+
+echo "mDNS setup completed with success"
