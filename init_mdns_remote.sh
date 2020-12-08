@@ -70,3 +70,13 @@ else
   echo "ERROR: $service  not enabled"
   exit 1
 fi
+
+packages="avahi-tools"
+if ssh -p "$port" root@"$machine" "$install $packages"; then
+
+  echo "$packages: Installed"
+else
+
+  echo "ERROR: $packages  not installed"
+  exit 1
+fi
