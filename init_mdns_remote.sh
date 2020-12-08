@@ -59,3 +59,14 @@ else
   echo "ERROR: $packages  not installed"
   exit 1
 fi
+
+service="avahi-daemon.service"
+enable_service="systemctl enable --now $service"
+if ssh -p "$port" root@"$machine" "$enable_service"; then
+
+  echo "$service: Enabled"
+else
+
+  echo "ERROR: $service  not enabled"
+  exit 1
+fi
