@@ -49,3 +49,13 @@ else
 
   echo "Package manager is recognized"
 fi
+
+packages="nss-mdns avahi"
+if ssh -p "$port" root@"$machine" "$install $packages"; then
+
+  echo "$packages: Installed"
+else
+
+  echo "ERROR: $packages  not installed"
+  exit 1
+fi
