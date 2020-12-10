@@ -22,14 +22,28 @@ fi
 
 no_manager="none"
 install="$no_manager"
-if ssh -p "$port" root@"$machine" "which yum"; then
+if ssh -p "$port" root@"$machine" "which dnf"; then
 
-  install="yum install -y"
-  packages="nss-mdns avahi avahi-tools"
+  if ssh -p "$port" root@"$machine" "cat /etc/os-release | grep -i centos" >/dev/null 2>&1; then
+
+    if ssh -p "$port" root@"$machine" "dnf install -y epel-release"; then
+
+      echo "EPEL installed"
+    else
+
+      echo "Could not install EPEL"
+      exit 1
+    fi
+  else
+
+    packages="avahi-tools"
+  fi
+  install="dnf install -y"
+  packages="nss-mdns avahi $packages"
 else
-  if ssh -p "$port" root@"$machine" "which dnf"; then
+  if ssh -p "$port" root@"$machine" "which yum"; then
 
-    install="dnf install -y"
+    install="yum install -y"
     packages="nss-mdns avahi avahi-tools"
   else
     if ssh -p "$port" root@"$machine" "which apt"; then
@@ -51,9 +65,6 @@ if [ "$install" = "$no_manager" ]; then
 
   echo "ERROR: No package manager recognized"
   exit 1
-else
-
-  echo "Package manager is recognized"
 fi
 
 if ssh -p "$port" root@"$machine" "$install $packages"; then
