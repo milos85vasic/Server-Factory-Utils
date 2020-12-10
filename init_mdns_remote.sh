@@ -25,18 +25,23 @@ install="$no_manager"
 if ssh -p "$port" root@"$machine" "which yum"; then
 
   install="yum install -y"
+  packages="nss-mdns avahi avahi-tools"
 else
   if ssh -p "$port" root@"$machine" "which dnf"; then
 
     install="dnf install -y"
+    packages="nss-mdns avahi avahi-tools"
   else
     if ssh -p "$port" root@"$machine" "which apt"; then
 
       install="apt install -y"
+      packages="avahi-daemon avahi-discover avahi-utils libnss-mdns mdns-scan"
     else
       if ssh -p "$port" root@"$machine" "which pacman"; then
 
+        # TODO: Support for Arch and Manjaro
         install="pacman -Syu"
+        packages="nss-mdns avahi avahi-tools"
       fi
     fi
   fi
@@ -51,7 +56,6 @@ else
   echo "Package manager is recognized"
 fi
 
-packages="nss-mdns avahi"
 if ssh -p "$port" root@"$machine" "$install $packages"; then
 
   echo "$packages: Installed"
@@ -69,16 +73,6 @@ if ssh -p "$port" root@"$machine" "$enable_service"; then
 else
 
   echo "ERROR: $service  not enabled"
-  exit 1
-fi
-
-packages="avahi-tools"
-if ssh -p "$port" root@"$machine" "$install $packages"; then
-
-  echo "$packages: Installed"
-else
-
-  echo "ERROR: $packages  not installed"
   exit 1
 fi
 
