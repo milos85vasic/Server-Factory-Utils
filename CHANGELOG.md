@@ -3,6 +3,11 @@
 This document represents changelog for the project. Next sub-sections describe
 all released versions, major changes and new features that have been introduced.
 
+## Version 1.0.0 Alpha 4
+
+- mDNS script: Ubuntu support
+- mDNS script: Centos support.
+
 ## Version 1.0.0 Alpha 3.1
 
 - Simplifying get IP script.
