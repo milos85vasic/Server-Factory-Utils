@@ -6,7 +6,7 @@ new features that have been introduced.
 ## Version 1.0.0 Alpha 4.4
 
 - Get active connections script added
-- Get directory size script added.
+- Get and monitor directory size scripts added.
 
 ## Version 1.0.0 Alpha 4.3
 
