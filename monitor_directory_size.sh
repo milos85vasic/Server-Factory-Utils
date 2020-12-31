@@ -3,7 +3,7 @@
 directory="$1"
 if test -e "$directory"; then
 
-  size=$(sh get_directory_size.sh "$directory")
+  size=$(du -sh "$directory")
   printf "%s" "$size"
   sleep 3
   printf "\r"
